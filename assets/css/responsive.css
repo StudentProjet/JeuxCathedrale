@@ -1,0 +1,5 @@
+@media screen and (max-width: 1280px) {
+    #issues li p {
+        margin-left: 6%;
+    }
+}
