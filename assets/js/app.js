@@ -6,4 +6,6 @@ $(function(){
 
 $(document).ready(function() {
 
+    $("#btn-next").css('display', 'none');
+
 });

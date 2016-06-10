@@ -185,3 +185,12 @@ a:visited, a:focus{
 #prev.disabled {
     opacity: 0.2;
 }
+
+.panel-btn{
+    float: right;
+    padding: 2%;
+}
+
+.panel-btn a{
+    font-size: 18px;
+}

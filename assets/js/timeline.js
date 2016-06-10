@@ -61,48 +61,65 @@ jQuery.fn.timelinr = function(options){
 
         $(settings.datesDiv+' a').click(function(event){
             event.preventDefault();
-            // first vars
-            var whichIssue = $(this).text();
-            var currentIndex = $(this).parent().prevAll().length;
-            // moving the elements
-            if(settings.orientation == 'horizontal') {
-                $(settings.issuesDiv).animate({'marginLeft':-widthIssue*currentIndex},{queue:false, duration:settings.issuesSpeed});
-            } else if(settings.orientation == 'vertical') {
-                $(settings.issuesDiv).animate({'marginTop':-heightIssue*currentIndex},{queue:false, duration:settings.issuesSpeed});
-            }
-            $(settings.issuesDiv+' li').animate({'opacity':settings.issuesTransparency},{queue:false, duration:settings.issuesSpeed}).removeClass(settings.issuesSelectedClass).eq(currentIndex).addClass(settings.issuesSelectedClass).fadeTo(settings.issuesTransparencySpeed,1);
-            // prev/next buttons now disappears on first/last issue | bugfix from 0.9.51: lower than 1 issue hide the arrows | bugfixed: arrows not showing when jumping from first to last date
-            if(howManyDates == 1) {
-                $(settings.prevButton+','+settings.nextButton).fadeOut('fast');
-            } else if(howManyDates == 2) {
-                if($(settings.issuesDiv+' li:first-child').hasClass(settings.issuesSelectedClass)) {
-                    $(settings.prevButton).fadeOut('fast');
-                    $(settings.nextButton).fadeIn('fast');
+            if($(this).data('click') !== false) {
+                // first vars
+                var whichIssue = $(this).text();
+                var currentIndex = $(this).parent().prevAll().length;
+                // moving the elements
+                if (settings.orientation == 'horizontal') {
+                    $(settings.issuesDiv).animate({'marginLeft': -widthIssue * currentIndex}, {
+                        queue: false,
+                        duration: settings.issuesSpeed
+                    });
+                } else if (settings.orientation == 'vertical') {
+                    $(settings.issuesDiv).animate({'marginTop': -heightIssue * currentIndex}, {
+                        queue: false,
+                        duration: settings.issuesSpeed
+                    });
                 }
-                else if($(settings.issuesDiv+' li:last-child').hasClass(settings.issuesSelectedClass)) {
-                    $(settings.nextButton).fadeOut('fast');
-                    $(settings.prevButton).fadeIn('fast');
+                $(settings.issuesDiv + ' li').animate({'opacity': settings.issuesTransparency}, {
+                    queue: false,
+                    duration: settings.issuesSpeed
+                }).removeClass(settings.issuesSelectedClass).eq(currentIndex).addClass(settings.issuesSelectedClass).fadeTo(settings.issuesTransparencySpeed, 1);
+                // prev/next buttons now disappears on first/last issue | bugfix from 0.9.51: lower than 1 issue hide the arrows | bugfixed: arrows not showing when jumping from first to last date
+                if (howManyDates == 1) {
+                    $(settings.prevButton + ',' + settings.nextButton).fadeOut('fast');
+                } else if (howManyDates == 2) {
+                    if ($(settings.issuesDiv + ' li:first-child').hasClass(settings.issuesSelectedClass)) {
+                        $(settings.prevButton).fadeOut('fast');
+                        $(settings.nextButton).fadeIn('fast');
+                    }
+                    else if ($(settings.issuesDiv + ' li:last-child').hasClass(settings.issuesSelectedClass)) {
+                        $(settings.nextButton).fadeOut('fast');
+                        $(settings.prevButton).fadeIn('fast');
+                    }
+                } else {
+                    if ($(settings.issuesDiv + ' li:first-child').hasClass(settings.issuesSelectedClass)) {
+                        $(settings.nextButton).fadeIn('fast');
+                        $(settings.prevButton).fadeOut('fast');
+                    }
+                    else if ($(settings.issuesDiv + ' li:last-child').hasClass(settings.issuesSelectedClass)) {
+                        $(settings.prevButton).fadeIn('fast');
+                        $(settings.nextButton).fadeOut('fast');
+                    }
+                    else {
+                        $(settings.nextButton + ',' + settings.prevButton).fadeIn('slow');
+                    }
                 }
-            } else {
-                if( $(settings.issuesDiv+' li:first-child').hasClass(settings.issuesSelectedClass) ) {
-                    $(settings.nextButton).fadeIn('fast');
-                    $(settings.prevButton).fadeOut('fast');
+                // now moving the dates
+                $(settings.datesDiv + ' a').removeClass(settings.datesSelectedClass);
+                $(this).addClass(settings.datesSelectedClass);
+                if (settings.orientation == 'horizontal') {
+                    $(settings.datesDiv).animate({'marginLeft': defaultPositionDates - (widthDate * currentIndex)}, {
+                        queue: false,
+                        duration: 'settings.datesSpeed'
+                    });
+                } else if (settings.orientation == 'vertical') {
+                    $(settings.datesDiv).animate({'marginTop': defaultPositionDates - (heightDate * currentIndex)}, {
+                        queue: false,
+                        duration: 'settings.datesSpeed'
+                    });
                 }
-                else if( $(settings.issuesDiv+' li:last-child').hasClass(settings.issuesSelectedClass) ) {
-                    $(settings.prevButton).fadeIn('fast');
-                    $(settings.nextButton).fadeOut('fast');
-                }
-                else {
-                    $(settings.nextButton+','+settings.prevButton).fadeIn('slow');
-                }
-            }
-            // now moving the dates
-            $(settings.datesDiv+' a').removeClass(settings.datesSelectedClass);
-            $(this).addClass(settings.datesSelectedClass);
-            if(settings.orientation == 'horizontal') {
-                $(settings.datesDiv).animate({'marginLeft':defaultPositionDates-(widthDate*currentIndex)},{queue:false, duration:'settings.datesSpeed'});
-            } else if(settings.orientation == 'vertical') {
-                $(settings.datesDiv).animate({'marginTop':defaultPositionDates-(heightDate*currentIndex)},{queue:false, duration:'settings.datesSpeed'});
             }
         });
 
