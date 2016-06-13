@@ -203,3 +203,7 @@ a:visited, a:focus{
 #essaie{
     color: red;
 }
+
+li{
+    list-style: none;
+}

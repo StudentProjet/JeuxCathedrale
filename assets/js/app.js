@@ -122,4 +122,20 @@ $(document).ready(function() {
         }
     });
 
+    // Enigme 7
+    $("#btn-enigme7").bind('click', function () {
+        var reponse = $('input[name=textE7]').val();
+        if(reponse != ""){
+            if(reponse.toUpperCase() === "GOTHIQUE"){
+                $('a[href=#enigme7]').hide();
+                $('#enigme7').modal("hide");
+                $('#final').modal("show");
+            }else{
+                $('#reponse_6').html("Faux ! essaie encore ");
+            }
+        }else{
+            $('#reponse_6').html("Repondez à la question");
+        }
+    });
+
 });
