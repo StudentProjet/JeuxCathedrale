@@ -107,4 +107,23 @@ $(document).ready(function() {
         }
     });
 
+    // Enigme 5
+    $("#btn-enigme5").bind('click', function () {
+        var reponse = $('input[name=textE5]').val();
+        if(reponse != ""){
+            if(reponse.toUpperCase() === "THOMAS DE CORMONT"){
+                var selector = "a[href=#1255]";
+                $(selector).html('1255');
+                $(selector).data("click", "true");
+                $('a[href=#enigme5]').hide();
+                $('#enigme5').modal("hide");
+                $("#btn-next").css('display', 'block');
+            }else{
+                $('#reponse_5').html("Faux ! essaie encore ");
+            }
+        }else{
+            $('#reponse_5').html("Repondez à la question");
+        }
+    });
+
 });
