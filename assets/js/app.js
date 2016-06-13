@@ -87,5 +87,24 @@ $(document).ready(function() {
             $('#reponse_4').html("Repondez à la question");
         }
     });
+	
+	// Enigme 6
+    $("#btn-enigme6").bind('click', function () {
+        var reponse = $('input[name=textE6]').val();
+        if(reponse != ""){
+            if(reponse === "CHOEUR"){
+                var selector = "a[href=#1265]";
+                $(selector).html('1265');
+                $(selector).data("click", "true");
+                $('a[href=#enigme6]').hide();
+                $('#enigme6').modal("hide");
+                $("#btn-next").css('display', 'block');
+            }else{
+                $('#reponse_6').html("Faux ! essaie encore ");
+            }
+        }else{
+            $('#reponse_6').html("Repondez à la question");
+        }
+    });
 
 });
