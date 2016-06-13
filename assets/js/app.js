@@ -26,28 +26,46 @@ $(document).ready(function() {
         }
     });
 
-
     // Enigme 2
     $("#btn-enigme2").bind('click', function () {
         var reponse = $('input[name=enigme2]').val();
-        if(reponse != ""){
-            if((reponse === "Robert de Luzarches" || reponse === "robert de luzarches") && essaieEnigme2 != 0){
+        if (reponse != "") {
+            if ((reponse === "Robert de Luzarches" || reponse === "robert de luzarches") && essaieEnigme2 != 0) {
                 var selector = "a[href=#1230]";
                 $(selector).html("1230");
                 $(selector).data("click", "true");
                 $('a[href=#enigme2]').hide();
                 $('#enigme2').modal("hide");
-            }else{
-                if(essaieEnigme2 != 0) {
+            } else {
+                if (essaieEnigme2 != 0) {
                     essaieEnigme2--;
                     $('#essaie').html(essaieEnigme2);
                     $('#reponse_2').html("Faux ! essaie encore ");
-                }else{
+                } else {
                     $('#reponse_2').html("Perdu");
                 }
             }
-        }else{
+        } else {
             $('#reponse_2').html("Repondez à la question");
+        }
+    });
+
+    // Enigme 3
+    $("#btn-enigme3").bind('click', function () {
+        var reponse = $('input[name=optionsRadios2]:checked').val();
+        if(reponse != undefined){
+            if(reponse === "42m"){
+                var selector = "a[href=#" + reponse + "]";
+                $(selector).html(reponse);
+                $(selector).data("click", "true");
+                $('a[href=#enigme3]').hide();
+                $('#enigme1').modal("hide");
+                $("#btn-next").css('display', 'block');
+            }else{
+                $('#reponse_3').html("Faux ! essaie encore ");
+            }
+        }else{
+            $('#reponse_1').html("Repondez à la question");
         }
     });
 
