@@ -194,3 +194,8 @@ a:visited, a:focus{
 .panel-btn a{
     font-size: 18px;
 }
+
+.response{
+    text-align: center;
+    color: red;
+}
