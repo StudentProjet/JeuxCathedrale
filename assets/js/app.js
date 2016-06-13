@@ -13,7 +13,7 @@ $(document).ready(function() {
         var reponse = $('input[name=optionsRadios1]:checked').val();
         if(reponse != undefined){
             if(reponse === "1220"){
-                var selector = "a[href=#" + reponse + "]";
+                var selector = "a[href=#1220]";
                 $(selector).html(reponse);
                 $(selector).data("click", "true");
                 $('a[href=#enigme1]').hide();
@@ -30,7 +30,7 @@ $(document).ready(function() {
     $("#btn-enigme2").bind('click', function () {
         var reponse = $('input[name=enigme2]').val();
         if (reponse != "") {
-            if ((reponse === "Robert de Luzarches" || reponse === "robert de luzarches") && essaieEnigme2 != 0) {
+            if (reponse.toUpperCase() === "ROBERT DE LUZARCHES" && essaieEnigme2 != 0) {
                 var selector = "a[href=#1230]";
                 $(selector).html("1230");
                 $(selector).data("click", "true");
@@ -73,7 +73,7 @@ $(document).ready(function() {
     $("#btn-enigme4").bind('click', function () {
         var reponse = $('input[name=textE4]').val();
         if(reponse != ""){
-            if(reponse === "pierres de picquigny"){
+            if(reponse.toUpperCase() === "PIERRES DE PICQUIGNY"){
                 var selector = "a[href=#1250]";
                 $(selector).html('1250');
                 $(selector).data("click", "true");
